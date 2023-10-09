@@ -131,24 +131,32 @@ class ProductDetails extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20.r)),
                     child: Row(
                       children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.remove_circle_outline,
-                              color: Colors.white,
-                              size: 20.r,
-                            )),
-                        Text(
-                          "1",
-                          style: poppins18W500().copyWith(color: Colors.white),
+                        Expanded(
+                          child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.remove_circle_outline,
+                                color: Colors.white,
+                                size: 20.r,
+                              )),
                         ),
-                        IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.add_circle_outline,
-                              color: Colors.white,
-                              size: 20.r,
-                            ))
+                        Expanded(
+
+                          child: Text(
+                            "1",
+                            style: poppins18W500().copyWith(color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Expanded(
+                          child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.add_circle_outline,
+                                color: Colors.white,
+                                size: 20.r,
+                              )),
+                        )
                       ],
                     ),
                   )

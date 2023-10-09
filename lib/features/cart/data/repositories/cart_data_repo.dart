@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/core/error/failures.dart';
 import 'package:e_commerce/features/cart/data/data_sources/data_source.dart';
+import 'package:e_commerce/features/cart/data/models/AuthToken.dart';
 import 'package:e_commerce/features/cart/data/models/GetCart.dart';
 import 'package:e_commerce/features/cart/domain/repositories/cart_domain_repo.dart';
 
@@ -22,5 +23,10 @@ class CartDataRepo implements CartDomainRepo {
   @override
   Future<Either<Failures, GetCart>> updateCart(String productId, int count) {
     return cartDataSource.updateCart(productId, count);
+  }
+
+  @override
+  Future<Either<Failures, AuthToken>> getAuthToken(String apiKey) {
+    return cartDataSource.getAuthToken(apiKey);
   }
 }

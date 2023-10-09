@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce/config/routes/app_routes.dart';
+import 'package:e_commerce/core/network/dio_helper.dart';
 import 'package:e_commerce/core/utils/bloc_observer.dart';
 import 'package:e_commerce/core/utils/cache_helper.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'app.dart';
 
 void main() async {
+  DioHelper.init();
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   Bloc.observer = MyBlocObserver();

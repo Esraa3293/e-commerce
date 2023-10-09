@@ -1,3 +1,4 @@
+import 'package:e_commerce/config/routes/app_routes.dart';
 import 'package:e_commerce/core/utils/app_assets.dart';
 import 'package:e_commerce/core/utils/app_colors.dart';
 import 'package:e_commerce/core/utils/text_styles.dart';
@@ -59,26 +60,6 @@ class HomeTab extends StatelessWidget {
                 SizedBox(
                   width: 24.w,
                 ),
-                // InkWell(
-                //   onTap: () {},
-                //   child: Image.asset(
-                //     AppImages.cart,
-                //     width: 24.w,
-                //     height: 24.h,
-                //   ),
-                // )
-                // TextField(
-                //   decoration: InputDecoration(
-                //     enabledBorder: OutlineInputBorder(
-                //       borderSide: const BorderSide(width: 2,color: AppColors.primary),
-                //       borderRadius: BorderRadius.circular(30.r),
-                //     ),
-                //     border: OutlineInputBorder(
-                //       borderSide: const BorderSide(width: 2,color: AppColors.primary),
-                //       borderRadius: BorderRadius.circular(30.r),
-                //     )
-                //   ),
-                // )
               ],
             ),
           ),
@@ -132,28 +113,33 @@ class HomeTab extends StatelessWidget {
                     ),
                     itemCount: HomeCubit.get(context).categories.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return Column(
-                        children: [
-                          SizedBox(
-                            width: 100.w,
-                            height: 100.h,
-                            child: CircleAvatar(
-                              radius: 50.0,
-                              backgroundImage: NetworkImage(
-                                  HomeCubit.get(context)
-                                          .categories[index]
-                                          .image ??
-                                      ""),
+                      return InkWell(
+                        onTap: () {
+                          //Navigator.pushNamed(context, Routes.subCategory);
+                        },
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              width: 100.w,
+                              height: 100.h,
+                              child: CircleAvatar(
+                                radius: 50.0,
+                                backgroundImage: NetworkImage(
+                                    HomeCubit.get(context)
+                                            .categories[index]
+                                            .image ??
+                                        ""),
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 8.h,
-                          ),
-                          Text(
-                            HomeCubit.get(context).categories[index].name ?? "",
-                            style: poppins14W400(),
-                          )
-                        ],
+                            SizedBox(
+                              height: 8.h,
+                            ),
+                            Text(
+                              HomeCubit.get(context).categories[index].name ?? "",
+                              style: poppins14W400(),
+                            )
+                          ],
+                        ),
                       );
                     },
                   ),

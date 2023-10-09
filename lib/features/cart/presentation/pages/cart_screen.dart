@@ -1,8 +1,10 @@
+import 'package:e_commerce/config/routes/app_routes.dart';
 import 'package:e_commerce/core/utils/app_colors.dart';
 import 'package:e_commerce/core/utils/text_styles.dart';
 import 'package:e_commerce/features/cart/data/data_sources/cart_remote_dto.dart';
-import 'package:e_commerce/features/cart/presentation/manager/cubit.dart';
-import 'package:e_commerce/features/cart/presentation/manager/states.dart';
+import 'package:e_commerce/features/cart/presentation/manager/cart_cubit.dart';
+import 'package:e_commerce/features/cart/presentation/manager/cart_states.dart';
+import 'package:e_commerce/features/cart/presentation/manager/payment_states.dart';
 import 'package:e_commerce/features/cart/presentation/widgets/cart_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,7 +62,10 @@ class CartScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20.r),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, Routes.paymentMethods);
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
@@ -86,9 +91,12 @@ class CartScreen extends StatelessWidget {
                           CartItem(state.getCart.data!.products![index]),
                       separatorBuilder: (context, index) => const Divider(),
                       itemCount: state.getCart.numOfCartItems!));
-            }else{
-              return Scaffold(
-                body: Center(child: CircularProgressIndicator(color: AppColors.primary,)),
+            } else {
+              return const Scaffold(
+                body: Center(
+                    child: CircularProgressIndicator(
+                  color: AppColors.primary,
+                )),
               );
             }
           },

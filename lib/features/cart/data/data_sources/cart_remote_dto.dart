@@ -5,6 +5,7 @@ import 'package:e_commerce/core/error/failures.dart';
 import 'package:e_commerce/core/utils/cache_helper.dart';
 import 'package:e_commerce/core/utils/constants.dart';
 import 'package:e_commerce/features/cart/data/data_sources/data_source.dart';
+import 'package:e_commerce/features/cart/data/models/AuthToken.dart';
 import 'package:e_commerce/features/cart/data/models/GetCart.dart';
 
 class CartRemoteDto implements CartDataSource {
@@ -47,6 +48,19 @@ class CartRemoteDto implements CartDataSource {
           data: {"count": count});
       GetCart getCart = GetCart.fromJson(response.data);
       return Right(getCart);
+    } catch (e) {
+      return Left(ServerFailures(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, AuthToken>> getAuthToken(String apiKey) async {
+    try {
+      var response = await dio.post(
+          "${Constants.paymentBaseUrlApi}${EndPoints.authToken}",
+          data: {"api_key": Constants.apiKey});
+      AuthToken authToken = AuthToken.fromJson(response.data);
+      return Right(authToken);
     } catch (e) {
       return Left(ServerFailures(e.toString()));
     }

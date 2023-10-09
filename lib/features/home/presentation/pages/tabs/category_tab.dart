@@ -27,7 +27,7 @@ class CategoryTab extends StatelessWidget {
                 itemCount: HomeCubit.get(context).products.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 4 / 5,
+                    childAspectRatio: 4/5.5,
                     mainAxisSpacing: 16.h,
                     crossAxisSpacing: 16.w),
                 itemBuilder: (context, index) {

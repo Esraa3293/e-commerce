@@ -1,7 +1,7 @@
 import 'package:e_commerce/core/utils/app_colors.dart';
 import 'package:e_commerce/core/utils/text_styles.dart';
 import 'package:e_commerce/features/cart/data/models/GetCart.dart';
-import 'package:e_commerce/features/cart/presentation/manager/cubit.dart';
+import 'package:e_commerce/features/cart/presentation/manager/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -71,33 +71,40 @@ class CartItem extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20.r)),
                           child: Row(
                             children: [
-                              IconButton(
-                                  onPressed: () {
-                                    int counter = products.count ?? 0;
-                                    counter--;
-                                    CartCubit.get(context).updateCart(products.product?.id ?? "", counter);
-                                  },
-                                  icon: Icon(
-                                    Icons.remove_circle_outline,
-                                    color: Colors.white,
-                                    size: 20.r,
-                                  )),
-                              Text(
-                                products.count.toString() ?? "",
-                                style: poppins18W500()
-                                    .copyWith(color: Colors.white),
+                              Expanded(
+                                child: IconButton(
+                                    onPressed: () {
+                                      int counter = products.count ?? 0;
+                                      counter--;
+                                      CartCubit.get(context).updateCart(products.product?.id ?? "", counter);
+                                    },
+                                    icon: Icon(
+                                      Icons.remove_circle_outline,
+                                      color: Colors.white,
+                                      size: 20.r,
+                                    )),
                               ),
-                              IconButton(
-                                  onPressed: () {
-                                    int counter = products.count ?? 0;
-                                    counter++;
-                                    CartCubit.get(context).updateCart(products.product?.id ?? "", counter);
-                                  },
-                                  icon: Icon(
-                                    Icons.add_circle_outline,
-                                    color: Colors.white,
-                                    size: 20.r,
-                                  ))
+                              Expanded(
+                                child: Text(
+                                  products.count.toString() ?? "",
+                                  style: poppins18W500()
+                                      .copyWith(color: Colors.white),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              Expanded(
+                                child: IconButton(
+                                    onPressed: () {
+                                      int counter = products.count ?? 0;
+                                      counter++;
+                                      CartCubit.get(context).updateCart(products.product?.id ?? "", counter);
+                                    },
+                                    icon: Icon(
+                                      Icons.add_circle_outline,
+                                      color: Colors.white,
+                                      size: 20.r,
+                                    )),
+                              )
                             ],
                           ),
                         )

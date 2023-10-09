@@ -8,7 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductItem extends StatelessWidget {
   ProductDataEntity model;
-  ProductItem(this.model,{super.key});
+
+  ProductItem(this.model, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +18,8 @@ class ProductItem extends StatelessWidget {
       height: 237.h,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.r),
-          border: Border.all(
-              color: AppColors.primary.withOpacity(.3),
-              width: 2.w)),
+          border:
+              Border.all(color: AppColors.primary.withOpacity(.3), width: 2.w)),
       child: Stack(
         children: [
           Column(
@@ -40,8 +40,7 @@ class ProductItem extends StatelessWidget {
                 height: 8.h,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: 8.w, vertical: 8.h),
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
                 child: Text(
                   model.title ?? "",
                   maxLines: 2,
@@ -80,30 +79,36 @@ class ProductItem extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: 8.w, vertical: 8.h),
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
             child: Align(
               alignment: Alignment.topRight,
-              child: Image.asset(
-                AppImages.like,
-                width: 30.w,
-                height: 30.h,
+              child: InkWell(
+                onTap: (){
+                  HomeCubit.get(context).addToWishlist(model.id ?? "");
+                },
+                child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 14.r,
+                    child: Icon(
+                      Icons.favorite_border,
+                      size: 20,
+                      color: AppColors.primary,
+                    )),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: 8.w, vertical: 8.h),
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
             child: Align(
               alignment: Alignment.bottomRight,
               child: InkWell(
                 onTap: () {
                   HomeCubit.get(context).addToCart(model.id ?? "");
                 },
-                child: Image.asset(
-                  AppImages.add,
-                  width: 30.w,
-                  height: 30.h,
+                child: Icon(
+                  Icons.add_circle,
+                  size: 30,
+                  color: AppColors.primary,
                 ),
               ),
             ),
